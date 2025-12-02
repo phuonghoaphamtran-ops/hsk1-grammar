@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tổng hợp Ngữ pháp HSK1 – Phạm Trần Phương Hoa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #eef2ff;
+      --bg-soft: #f3f4ff;
+
+      --sidebar-bg: linear-gradient(180deg, #312E81 0%, #3730A3 100%);
+      --sidebar-border: #4338CA;
+      --sidebar-text: #E0E7FF;
+      --sidebar-muted: #A5B4FC;
+      --sidebar-accent: #C7D2FE;
+
+      --card-bg: #ffffff;
+      --card-border: #c7d2fe;
+      --card-shadow: 0 10px 26px rgba(79, 70, 229, 0.15);
+
+      --text: #1E1B4B;
+      --muted: #6D7280;
+      --title: #4338CA;
+      --link: #4338CA;
+      --link-hover: #7C3AED;
+
+      --tag-bg: #EEF2FF;
+      --tag-text: #4338CA;
+
+      --cn: #7C3AED;
+
+      --footer-border: #c7d2fe;
+    }
+
+    body.dark {
+      --bg: #0F0A34;
+      --bg-soft: #1B163F;
+      --sidebar-bg: linear-gradient(180deg, #1E1B4B 0%, #312E81 100%);
+      --sidebar-border: #4F46E5;
+      --sidebar-text: #E0E7FF;
+      --sidebar-muted: #94A3B8;
+      --sidebar-accent: #A5B4FC;
+
+      --card-bg: #1E1B4B;
+      --card-border: #4F46E5;
+      --card-shadow: 0 12px 30px rgba(0,0,0,0.5);
+
+      --text: #F2F1FF;
+      --muted: #A5A3D6;
+      --title: #A5B4FC;
+      --link: #C4B5FD;
+      --link-hover: #EDE9FE;
+
+      --tag-bg: #2E1A47;
+      --tag-text: #C4B5FD;
+
+      --cn: #E879F9;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: 260px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--sidebar-border);
+      padding: 16px 14px 20px;
+      overflow-y: auto;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease-out;
+      z-index: 50;
+      color: var(--sidebar-text);
+    }
+    body.sidebar-open .sidebar { transform: translateX(0); }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .sidebar-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sidebar-accent);
+    }
+    .sidebar-close {
+      background: transparent;
+      border: none;
+      color: var(--sidebar-text);
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      padding: 4px 6px;
+      border-radius: 999px;
+    }
+
+    .sidebar-section-title {
+      font-weight: 600;
+      color: #E0E7FF;
+      margin-top: 14px;
+      margin-bottom: 4px;
+      font-size: 0.92rem;
+    }
+    .sidebar-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .sidebar-list li { margin: 1px 0; }
+    .sidebar-list a {
+      text-decoration: none;
+      color: var(--sidebar-muted);
+      display: block;
+      padding: 3px 6px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+    }
+    .sidebar-list a:hover {
+      background: rgba(255,255,255,0.16);
+      color: #fff;
+    }
+
+    /* Buttons */
+    .sidebar-toggle {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 60;
+      background: #4F46E5;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(15,23,42,0.3);
+    }
+
+    #themeToggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 60;
+      background: var(--card-bg);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(15,23,42,0.25);
+    }
+
+    /* MAIN */
+    .page {
+      max-width: 1100px;
+      margin: 60px auto 40px;
+      padding: 20px 16px;
+    }
+    .container {
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: var(--card-shadow);
+      padding: 28px 22px 36px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--title);
+      font-weight: 750;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .intro-box {
+      margin: 18px 0 26px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: var(--bg-soft);
+      border: 1px dashed var(--card-border);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .section-heading {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 650;
+    }
+
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      padding: 15px 14px 16px;
+    }
+    .card-number {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #4F46E5;
+      background: rgba(79,70,229,0.18);
+      padding: 3px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+      display: inline-block;
+    }
+    body.dark .card-number {
+      background: rgba(129,140,248,0.30);
+      color: #A5B4FC;
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 650;
+      margin-top: 6px;
+      margin-bottom: 4px;
+    }
+    .card-body p { margin: 4px 0; }
+
+    .cn {
+      font-weight: 700;
+      color: var(--cn);
+    }
+    ul.examples {
+      margin: 4px 0 0;
+      padding-left: 18px;
+    }
+    ul.examples li {
+      margin: 3px 0;
+    }
+
+    @media (min-width: 960px) {
+      body.sidebar-open .page {
+        margin-left: 260px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<button id="sidebarToggle" class="sidebar-toggle">☰ Mục lục</button>
+<button id="themeToggle">🌙 Dark Mode</button>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">HSK1</div>
+    <button class="sidebar-close" id="sidebarClose">✕</button>
+  </div>
+
+  <div class="sidebar-section-title">I. Câu cơ bản</div>
+  <ul class="sidebar-list">
+    <li><a href="#g1">1. Câu trần thuật</a></li>
+    <li><a href="#g2">2. Câu có 有</a></li>
+    <li><a href="#g3">3. A 是 B</a></li>
+  </ul>
+
+  <div class="sidebar-section-title">II. Câu hỏi</div>
+  <ul class="sidebar-list">
+    <li><a href="#g4">4. Câu hỏi với 吗</a></li>
+    <li><a href="#g5">5. A 还是 B？</a></li>
+    <li><a href="#g6">6. Câu hỏi với 呢</a></li>
+  </ul>
+
+  <div class="sidebar-section-title">III. Phủ định & trợ từ</div>
+  <ul class="sidebar-list">
+    <li><a href="#g7">7. 不</a></li>
+    <li><a href="#g8">8. 没</a></li>
+    <li><a href="#g9">9. 吗</a></li>
+    <li><a href="#g10">10. 吧</a></li>
+  </ul>
+
+  <div class="sidebar-section-title">IV. Động từ & trợ động từ</div>
+  <ul class="sidebar-list">
+    <li><a href="#g11">11. 会</a></li>
+    <li><a href="#g12">12. 想</a></li>
+    <li><a href="#g13">13. 要</a></li>
+  </ul>
+
+  <div class="sidebar-section-title">V. Lượng từ</div>
+  <ul class="sidebar-list">
+    <li><a href="#g14">14. 个</a></li>
+    <li><a href="#g15">15. 些</a></li>
+  </ul>
+
+  <div class="sidebar-section-title">VI. Trạng từ mức độ</div>
+  <ul class="sidebar-list">
+    <li><a href="#g16">16. 很</a></li>
+    <li><a href="#g17">17. 太…了</a></li>
+  </ul>
+
+  <div class="sidebar-section-title">VII. Hiện tại tiếp diễn</div>
+  <ul class="sidebar-list">
+    <li><a href="#g18">18. 在 + V</a></li>
+    <li><a href="#g19">19. 正在 + V</a></li>
+  </ul>
+
+  <div class="sidebar-section-title">VIII. Ngữ pháp khác</div>
+  <ul class="sidebar-list">
+    <li><a href="#g20">20. 还</a></li>
+    <li><a href="#g21">21. 和</a></li>
+    <li><a href="#g22">22. 的</a></li>
+  </ul>
+</aside>
+
+<!-- MAIN -->
+<main class="page">
+  <div class="container">
+    <h1>TỔNG HỢP NGỮ PHÁP HSK1 (CƠ BẢN)</h1>
+    <div class="subtitle">Ngữ pháp trọng tâm HSK1</div>
+
+    <div class="intro-box">
+      ✅ Mỗi card là một điểm ngữ pháp quan trọng trong HSK1.<br>
+      ✅ Dùng sidebar bên trái để nhảy nhanh, có Dark/Light Mode để chiếu máy chiếu.
+    </div>
+
+    <!-- I. CÂU CƠ BẢN -->
+    <div class="section-heading" id="sec1">
+      <div class="section-tag">I</div>
+      <div class="section-title">CÂU CƠ BẢN</div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 1. Câu trần thuật -->
+      <div class="card" id="g1">
+        <div class="card-number">01</div>
+        <div class="card-title">Câu trần thuật cơ bản</div>
+        <div class="card-body">
+          <p>Cấu trúc thông dụng nhất:</p>
+          <p><strong>Chủ ngữ + Động từ + Tân ngữ</strong></p>
+          <ul class="examples">
+            <li><span class="cn">我吃饭。</span> – Tôi ăn cơm.</li>
+            <li><span class="cn">他学习汉语。</span> – Anh ấy học tiếng Hán.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. 有 -->
+      <div class="card" id="g2">
+        <div class="card-number">02</div>
+        <div class="card-title">Câu có 有 (yǒu)</div>
+        <div class="card-body">
+          <p>Dùng <span class="cn">有</span> để diễn tả “có …”.</p>
+          <p>Cấu trúc:</p>
+          <p><strong>Chủ ngữ + 有 + Tân ngữ</strong></p>
+          <ul class="examples">
+            <li><span class="cn">我有很多书。</span> – Tôi có rất nhiều sách.</li>
+            <li><span class="cn">他有一个姐姐。</span> – Anh ấy có một chị gái.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. A 是 B -->
+      <div class="card" id="g3">
+        <div class="card-number">03</div>
+        <div class="card-title">Câu A 是 B</div>
+        <div class="card-body">
+          <p>Dùng để nói “A là B”.</p>
+          <p>Cấu trúc:</p>
+          <p><strong>A + 是 + B</strong></p>
+          <ul class="examples">
+            <li><span class="cn">我是学生。</span> – Tôi là học sinh.</li>
+            <li><span class="cn">他是老师。</span> – Anh ấy là giáo viên.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- II. CÂU HỎI -->
+    <div class="section-heading" id="sec2">
+      <div class="section-tag">II</div>
+      <div class="section-title">CÂU HỎI</div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 4. 吗 -->
+      <div class="card" id="g4">
+        <div class="card-number">04</div>
+        <div class="card-title">Câu hỏi với 吗 (ma)</div>
+        <div class="card-body">
+          <p>Thêm <span class="cn">吗</span> ở cuối câu trần thuật để biến thành câu hỏi “có… không?”.</p>
+          <ul class="examples">
+            <li><span class="cn">你是学生吗？</span> – Bạn là học sinh à?</li>
+            <li><span class="cn">你喜欢汉语吗？</span> – Bạn thích tiếng Hán không?</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5. A 还是 B -->
+      <div class="card" id="g5">
+        <div class="card-number">05</div>
+        <div class="card-title">Câu hỏi lựa chọn: A 还是 B？</div>
+        <div class="card-body">
+          <p>Hỏi lựa chọn giữa hai phương án A và B.</p>
+          <ul class="examples">
+            <li><span class="cn">你喝茶还是咖啡？</span> – Bạn uống trà hay cà phê?</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6. 呢 -->
+      <div class="card" id="g6">
+        <div class="card-number">06</div>
+        <div class="card-title">Câu hỏi với 呢 (ne)</div>
+        <div class="card-body">
+          <p>Dùng <span class="cn">呢</span> để hỏi tiếp nối, thường hỏi “còn… thì sao?”.</p>
+          <ul class="examples">
+            <li><span class="cn">我很好，你呢？</span> – Tôi rất ổn, còn bạn?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- III. PHỦ ĐỊNH & TRỢ TỪ -->
+    <div class="section-heading" id="sec3">
+      <div class="section-tag">III</div>
+      <div class="section-title">PHỦ ĐỊNH & TRỢ TỪ</div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 7. 不 -->
+      <div class="card" id="g7">
+        <div class="card-number">07</div>
+        <div class="card-title">不 (bù)</div>
+        <div class="card-body">
+          <p>Dùng để phủ định thói quen, tính cách, hay sự việc chung chung (hiện tại / tương lai).</p>
+          <ul class="examples">
+            <li><span class="cn">我不喝咖啡。</span> – Tôi không uống cà phê.</li>
+            <li><span class="cn">他不喜欢看电影。</span> – Anh ấy không thích xem phim.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 8. 没 -->
+      <div class="card" id="g8">
+        <div class="card-number">08</div>
+        <div class="card-title">没 (méi)</div>
+        <div class="card-body">
+          <p>Dùng để phủ định hành động <strong>đã xảy ra / chưa xảy ra</strong>.</p>
+          <ul class="examples">
+            <li><span class="cn">我没去学校。</span> – Tôi đã không đi đến trường.</li>
+            <li><span class="cn">我还没吃饭。</span> – Tôi vẫn chưa ăn cơm.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 9. 吗 (giải thích) -->
+      <div class="card" id="g9">
+        <div class="card-number">09</div>
+        <div class="card-title">Trợ từ nghi vấn 吗 (ma)</div>
+        <div class="card-body">
+          <p><span class="cn">吗</span> không mang nghĩa riêng, chỉ dùng để đánh dấu câu hỏi Yes–No ở cuối câu.</p>
+          <ul class="examples">
+            <li><span class="cn">他是老师吗？</span> – Anh ấy là giáo viên à?</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 10. 吧 -->
+      <div class="card" id="g10">
+        <div class="card-number">10</div>
+        <div class="card-title">Trợ từ ngữ khí 吧 (ba)</div>
+        <div class="card-body">
+          <p>Dùng trong câu đề nghị, gợi ý, làm câu nhẹ nhàng hơn.</p>
+          <ul class="examples">
+            <li><span class="cn">我们走吧。</span> – Chúng ta đi thôi.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- IV. ĐỘNG TỪ & TRỢ ĐỘNG TỪ -->
+    <div class="section-heading" id="sec4">
+      <div class="section-tag">IV</div>
+      <div class="section-title">ĐỘNG TỪ & TRỢ ĐỘNG TỪ</div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 11. 会 -->
+      <div class="card" id="g11">
+        <div class="card-number">11</div>
+        <div class="card-title">会 (huì)</div>
+        <div class="card-body">
+          <p>Biểu thị “biết làm, có khả năng làm”.</p>
+          <ul class="examples">
+            <li><span class="cn">我会说汉语。</span> – Tôi biết nói tiếng Hán.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 12. 想 -->
+      <div class="card" id="g12">
+        <div class="card-number">12</div>
+        <div class="card-title">想 (xiǎng)</div>
+        <div class="card-body">
+          <p>Có nghĩa là “muốn, nghĩ, nhớ”. Trong HSK1 chủ yếu dùng nghĩa “muốn”.</p>
+          <ul class="examples">
+            <li><span class="cn">我想喝水。</span> – Tôi muốn uống nước.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 13. 要 -->
+      <div class="card" id="g13">
+        <div class="card-number">13</div>
+        <div class="card-title">要 (yào)</div>
+        <div class="card-body">
+          <p>Có thể mang nghĩa “muốn / cần / sắp”. Ở HSK1 chủ yếu dịch là “muốn”.</p>
+          <ul class="examples">
+            <li><span class="cn">我要吃米饭。</span> – Tôi muốn ăn cơm.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- V. LƯỢNG TỪ -->
+    <div class="section-heading" id="sec5">
+      <div class="section-tag">V</div>
+      <div class="section-title">LƯỢNG TỪ</div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 14. 个 -->
+      <div class="card" id="g14">
+        <div class="card-number">14</div>
+        <div class="card-title">个 (gè)</div>
+        <div class="card-body">
+          <p>Lượng từ phổ biến nhất, dùng cho rất nhiều danh từ.</p>
+          <ul class="examples">
+            <li><span class="cn">一个人。</span> – một người.</li>
+            <li><span class="cn">三个苹果。</span> – ba quả táo.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 15. 些 -->
+      <div class="card" id="g15">
+        <div class="card-number">15</div>
+        <div class="card-title">些 (xiē)</div>
+        <div class="card-body">
+          <p>Biểu thị “một ít, một vài, một số”.</p>
+          <ul class="examples">
+            <li><span class="cn">一些学生。</span> – một số học sinh.</li>
+            <li><span class="cn">这些书。</span> – những quyển sách này.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- VI. TRẠNG TỪ MỨC ĐỘ -->
+    <div class="section-heading" id="sec6">
+      <div class="section-tag">VI</div>
+      <div class="section-title">TRẠNG TỪ MỨC ĐỘ</div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 16. 很 -->
+      <div class="card" id="g16">
+        <div class="card-number">16</div>
+        <div class="card-title">很 (hěn)</div>
+        <div class="card-body">
+          <p>Thường dịch là “rất”, nhưng trong nhiều câu chỉ để nối chủ ngữ với tính từ.</p>
+          <ul class="examples">
+            <li><span class="cn">他很高。</span> – Anh ấy rất cao.</li>
+            <li><span class="cn">今天很好。</span> – Hôm nay rất tốt.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 17. 太…了 -->
+      <div class="card" id="g17">
+        <div class="card-number">17</div>
+        <div class="card-title">太…了 (tài … le)</div>
+        <div class="card-body">
+          <p>Dùng để nhấn mạnh “quá… rồi”.</p>
+          <p>Cấu trúc: <span class="cn">太 + Adj. + 了</span></p>
+          <ul class="examples">
+            <li><span class="cn">太好了！</span> – Tốt quá rồi!</li>
+            <li><span class="cn">今天太冷了。</span> – Hôm nay lạnh quá rồi.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- VII. HIỆN TẠI TIẾP DIỄN -->
+    <div class="section-heading" id="sec7">
+      <div class="section-tag">VII</div>
+      <div class="section-title">HIỆN TẠI TIẾP DIỄN</div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 18. 在 + V -->
+      <div class="card" id="g18">
+        <div class="card-number">18</div>
+        <div class="card-title">在 + 动词</div>
+        <div class="card-body">
+          <p>Dùng <span class="cn">在 + động từ</span> để biểu thị hành động đang diễn ra.</p>
+          <ul class="examples">
+            <li><span class="cn">我在吃饭。</span> – Tôi đang ăn cơm.</li>
+            <li><span class="cn">他在看书。</span> – Anh ấy đang đọc sách.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 19. 正在 + V -->
+      <div class="card" id="g19">
+        <div class="card-number">19</div>
+        <div class="card-title">正在 + 动词</div>
+        <div class="card-body">
+          <p><span class="cn">正在</span> nhấn mạnh “đúng lúc đang…”.</p>
+          <ul class="examples">
+            <li><span class="cn">我正在学习汉语。</span> – Tôi đang học tiếng Hán.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIII. NGỮ PHÁP KHÁC -->
+    <div class="section-heading" id="sec8">
+      <div class="section-tag">VIII</div>
+      <div class="section-title">NGỮ PHÁP KHÁC</div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 20. 还 -->
+      <div class="card" id="g20">
+        <div class="card-number">20</div>
+        <div class="card-title">还 (hái)</div>
+        <div class="card-body">
+          <p>Trong HSK1, chủ yếu dùng nghĩa “vẫn, còn”.</p>
+          <ul class="examples">
+            <li><span class="cn">我还在学校。</span> – Tôi vẫn ở trường.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 21. 和 -->
+      <div class="card" id="g21">
+        <div class="card-number">21</div>
+        <div class="card-title">和 (hé)</div>
+        <div class="card-body">
+          <p>Nghĩa là “và, với”.</p>
+          <ul class="examples">
+            <li><span class="cn">我和他都是学生。</span> – Tôi và anh ấy đều là học sinh.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 22. 的 -->
+      <div class="card" id="g22">
+        <div class="card-number">22</div>
+        <div class="card-title">的 (de)</div>
+        <div class="card-body">
+          <p>Dùng sau tính từ / cụm từ để bổ nghĩa cho danh từ phía sau.</p>
+          <p>Cấu trúc: <span class="cn">A + 的 + 名词</span></p>
+          <ul class="examples">
+            <li><span class="cn">我的老师。</span> – thầy/cô giáo của tôi.</li>
+            <li><span class="cn">漂亮的衣服。</span> – quần áo đẹp.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="
+      margin-top: 40px;
+      padding-top: 16px;
+      text-align: center;
+      border-top: 1px solid var(--footer-border);
+      color: var(--muted);
+    ">
+      Nguồn: <strong style="color:var(--title)">Phạm Trần Phương Hoa</strong><br>
+      (ĐĂNG KÝ HỌC ZALO: <span style="color:#16a34a;font-weight:700;">0383 991 743</span>)
+    </div>
+
+  </div>
+</main>
+
+<script>
+  const body = document.body;
+  const sidebarToggle = document.getElementById("sidebarToggle");
+  const sidebarClose = document.getElementById("sidebarClose");
+  const themeToggle = document.getElementById("themeToggle");
+
+  sidebarToggle.addEventListener("click", () => {
+    body.classList.toggle("sidebar-open");
+  });
+  sidebarClose.addEventListener("click", () => {
+    body.classList.remove("sidebar-open");
+  });
+
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark");
+    themeToggle.textContent = "☀️ Light Mode";
+  }
+
+  themeToggle.addEventListener("click", () => {
+    body.classList.toggle("dark");
+    if (body.classList.contains("dark")) {
+      themeToggle.textContent = "☀️ Light Mode";
+      localStorage.setItem("theme","dark");
+    } else {
+      themeToggle.textContent = "🌙 Dark Mode";
+      localStorage.setItem("theme","light");
+    }
+  });
+
+  // Back to top
+  const backToTop = document.createElement("button");
+  backToTop.textContent = "↑";
+  backToTop.id = "backToTop";
+  backToTop.style.position = "fixed";
+  backToTop.style.bottom = "26px";
+  backToTop.style.right = "26px";
+  backToTop.style.padding = "10px 14px";
+  backToTop.style.borderRadius = "50%";
+  backToTop.style.fontSize = "18px";
+  backToTop.style.border = "none";
+  backToTop.style.cursor = "pointer";
+  backToTop.style.display = "none";
+  backToTop.style.background = "#4F46E5";
+  backToTop.style.color = "#fff";
+  backToTop.style.boxShadow = "0 4px 12px rgba(0,0,0,0.25)";
+  document.body.appendChild(backToTop);
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 260) backToTop.style.display = "block";
+    else backToTop.style.display = "none";
+  });
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+
+</body>
+</html>
